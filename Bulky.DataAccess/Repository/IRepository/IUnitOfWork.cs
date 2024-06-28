@@ -10,6 +10,7 @@ namespace Bulky.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         ICategoryRepository<Category> Category { get; set; }
+        IProductRepository<Models.Product> Product { get; set; }
         void Save();
 
     }

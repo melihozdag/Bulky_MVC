@@ -11,6 +11,7 @@ using Bulky.DataAccess.Repository.IRepository;
 
 namespace Bulky.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -57,10 +58,6 @@ namespace Bulky.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("Id,Name,DisplayOrder")] Category category)
         {
-            if (category.Name == category.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "The Display Order cannot exactly match the Name.");
-            }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(category);
